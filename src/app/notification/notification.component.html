@@ -1,0 +1,3 @@
+<div class="alert" *ngIf="notification.show" [ngClass]="{'alert-danger':notification.type==='error','alert-success':notification.type==='success'}">
+    {{notification.message}}
+</div>

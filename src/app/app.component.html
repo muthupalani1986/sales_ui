@@ -1,12 +1,15 @@
-<div>
-  <form novalidate [formGroup]="uploadForm">
-    <div class="form-group">
-      <label for="settlement">Upload settlement file</label>
-      <input type="file" class="form-control-file" id="settlement" (change)="onFileChange($event)" formControlName="settlement"
-        accept=".txt">
-    </div>
-    <div class="form-group">
-      <button type="button" class="btn btn-primary" (click)="uploadDocument()" [disabled]="uploadForm.status==='INVALID'">Upload</button>
-    </div>
-  </form>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">  
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" *ngFor="let menu of menus" [ngClass]="{'active':menu.name===active}">
+        <a class="nav-link" href="javascript:void(0)" (click)="navigateTo(menu.link)">{{menu.name}}</a>
+      </li>
+    </ul>    
+  </div>
+</nav>
+<app-notification></app-notification>
+<div class="container-fluid"> 
+  <app-spinner *ngIf="spinner"></app-spinner>
+     
+    <router-outlet></router-outlet>
 </div>
