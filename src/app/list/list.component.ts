@@ -26,7 +26,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   public ngAfterViewInit() {
     setTimeout(() => {
-      this._headerService.setActiveMenu('View');      
+      this._headerService.setActiveMenu('View');
       this.getAllQuery();
     });
   }
@@ -35,22 +35,22 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.reportSubs.unsubscribe();
     }
   }
-  private getReport(requestPayload) {    
+  private getReport(requestPayload) {
     this._headerService.setSpinner(true);
-    this.reportSubs = this._settlementService.getSettlementReport(requestPayload).subscribe((data:any) => {
+    this.reportSubs = this._settlementService.getSettlementReport(requestPayload).subscribe((data: any) => {
       this._headerService.setSpinner(false);
       this.columnNames = data['fields'];
-      this.results = data['response'];      
+      this.results = data['response'];
       if (data.status === 404) {
         this.commErrorMsg();
-      }      
+      }
     }, (err) => {
       this.commErrorMsg();
     });
   }
   private getAllQuery() {
     this._headerService.setSpinner(true);
-    this._queryService.getAllQuery().subscribe((data:any) => {
+    this._queryService.getAllQuery().subscribe((data: any) => {
       this.queries = data['response'];
       if (data.status === 404) {
         this.commErrorMsg();
@@ -69,7 +69,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     this._notificationService.setNotification(notify);
     this._headerService.setSpinner(false);
   }
-  public run(data:any){
+  public run(data: any) {
     const requestPayload = {
       payload: {
         query: data.query
@@ -77,7 +77,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     };
     this.getReport(requestPayload);
   }
-  public deleteQuery(data){
+  public deleteQuery(data) {
     const requestPayload = {
       payload: {
         id: data.id
@@ -86,9 +86,9 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.deleteData(requestPayload);
   }
 
-  private deleteData(requestPayload){
+  private deleteData(requestPayload) {
     this._headerService.setSpinner(true);
-    this._queryService.deleteQuery(requestPayload).subscribe((data:any)=>{
+    this._queryService.deleteQuery(requestPayload).subscribe((data: any) => {
       const notify: Alert = {
         show: true,
         type: 'success',
@@ -97,9 +97,9 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
       this._notificationService.setNotification(notify);
       this._headerService.setSpinner(false);
       this.getAllQuery();
-    },(err)=>{
+    }, (err) => {
       this._headerService.setSpinner(false);
       this.commErrorMsg();
-    })
+    });
   }
 }

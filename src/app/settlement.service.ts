@@ -10,12 +10,12 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class SettlementService {
-  private endPoint=AppSettings.API_ENDPOINT;
+  private endPoint = AppSettings.API_ENDPOINT;
   constructor(private http: HttpClient) { }
   saveSettlement(payload) {
-    return this.http.post(this.endPoint+'/api/settlement/save', payload, httpOptions);
+    return this.http.post(this.endPoint + '/api/settlement/save', payload, httpOptions);
   }
   getSettlementReport(payload) {
-    return this.http.post(this.endPoint+'/api/settlement/report', payload, httpOptions);
+    return this.http.post(this.endPoint + '/api/settlement/report', payload, httpOptions);
   }
 }

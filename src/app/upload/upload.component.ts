@@ -84,7 +84,7 @@ export class UploadComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       };
       this.uploadSubs = this._settlementService.saveSettlement(requestPayload).subscribe((data: any) => {
-        
+
         this._headerService.setSpinner(false);
         const nofity: Alert = {
           show: true,
@@ -116,7 +116,7 @@ export class UploadComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
   public ngOnDestroy() {
-    if(this.uploadSubs){
+    if (this.uploadSubs) {
       this.uploadSubs.unsubscribe();
     }
   }

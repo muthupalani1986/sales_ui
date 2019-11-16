@@ -9,15 +9,15 @@ import { Alert, NotificationService } from '../notification.service';
   templateUrl: './new-query.component.html',
   styleUrls: ['./new-query.component.css']
 })
-export class NewQueryComponent implements OnInit,AfterViewInit {
+export class NewQueryComponent implements OnInit, AfterViewInit {
 
   constructor(
-    private _headerService:HeaderService,
-    private fb:FormBuilder,
-    private _queryService:QueryService,
-    private _notificationService:NotificationService
+    private _headerService: HeaderService,
+    private fb: FormBuilder,
+    private _queryService: QueryService,
+    private _notificationService: NotificationService
   ) { }
-  public queryForm:FormGroup;
+  public queryForm: FormGroup;
   ngOnInit() {
     this.initiForm();
   }
@@ -26,30 +26,30 @@ export class NewQueryComponent implements OnInit,AfterViewInit {
       this._headerService.setActiveMenu('Add Query');
     });
   }
-  private initiForm(){
-    this.queryForm=this.fb.group({
-      description:['',[Validators.required]],
-      query:['',[Validators.required]]
+  private initiForm() {
+    this.queryForm = this.fb.group({
+      description: ['', [Validators.required]],
+      query: ['', [Validators.required]]
 
-    })
+    });
   }
-  public get fieldDesciption(){
+  public get fieldDesciption() {
     return this.queryForm.get('description');
   }
-  public get fieldQuery(){
+  public get fieldQuery() {
     return this.queryForm.get('query');
   }
-  public saveQuery(){
-    if(this.queryForm.status==='VALID'){
+  public saveQuery() {
+    if (this.queryForm.status === 'VALID') {
       const requestPayload = {
         payload: {
           query: {
-            description:this.fieldDesciption.value,
-            query:this.fieldQuery.value
+            description: this.fieldDesciption.value,
+            query: this.fieldQuery.value
           }
         }
       };
-      this._queryService.saveQuery(requestPayload).subscribe((data:any)=>{
+      this._queryService.saveQuery(requestPayload).subscribe((data: any) => {
         this._headerService.setSpinner(false);
         const nofity: Alert = {
           show: true,
@@ -62,7 +62,7 @@ export class NewQueryComponent implements OnInit,AfterViewInit {
         }
         this._notificationService.setNotification(nofity);
         this.initiForm();
-      },(err)=>{
+      }, (err) => {
         this.commErrorMsg();
       });
     }
