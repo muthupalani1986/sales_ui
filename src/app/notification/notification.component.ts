@@ -8,15 +8,15 @@ import { NotificationService, Alert } from '../notification.service';
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent implements OnInit {
-  public subscription:Subscription[]=[];
-  public notification:Alert={
-    show:false
-  }
-  constructor(private _notificationService:NotificationService) { }
+  public subscription: Subscription[] = [];
+  public notification: Alert = {
+    show: false
+  };
+  constructor(private _notificationService: NotificationService) { }
 
   ngOnInit() {
-    this.subscription.push(this._notificationService.getNotification().subscribe((data:Alert)=>{
-      this.notification=data;
+    this.subscription.push(this._notificationService.getNotification().subscribe((data: Alert) => {
+      this.notification = data;
     }));
   }
 

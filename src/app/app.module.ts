@@ -8,10 +8,12 @@ import { ListComponent } from './list/list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { NotificationComponent } from './notification/notification.component';
+import { NewQueryComponent } from './new-query/new-query.component';
 
 const appRoutes: Routes = [
   { path: 'upload', component: UploadComponent },
   { path: 'view',      component: ListComponent },
+  { path: 'newQuery',      component: NewQueryComponent },
   { path: '',
     redirectTo: '/upload',
     pathMatch: 'full'
@@ -24,13 +26,14 @@ const appRoutes: Routes = [
     UploadComponent,
     ListComponent,
     SpinnerComponent,
-    NotificationComponent
+    NotificationComponent,
+    NewQueryComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes,{useHash: true})
+    RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [],
   bootstrap: [AppComponent]

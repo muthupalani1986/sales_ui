@@ -1,3 +1,30 @@
-<p>
-  list works!
-</p>
+<h1>Query list</h1>
+<table class="table table-bordered">
+  <thead>
+    <tr class="bg-primary">
+      <td>Description</td>
+      <td>Actions</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let query of queries">
+      <td>{{query.description}}</td>
+      <td class="actions"><button class="btn btn-primary" (click)="run(query)"><i class="fa fa-play" aria-hidden="true"></i></button> <button class="btn btn-primary" (click)="deleteQuery(query)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+    </tr>
+  </tbody>
+</table>
+<h2 *ngIf="columnNames.length>0">Report</h2>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr class="bg-primary">
+        <td *ngFor="let colName of columnNames">{{colName.name}}</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of results">
+        <td *ngFor="let colName of columnNames">{{row[colName.name]}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

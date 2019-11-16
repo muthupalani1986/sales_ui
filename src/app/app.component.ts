@@ -1,4 +1,4 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HeaderService } from './header.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
@@ -8,8 +8,8 @@ import { NotificationService } from './notification.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit,OnDestroy {
-  constructor(private _headerService:HeaderService,private _router:Router,private _notificationService:NotificationService) { }
+export class AppComponent implements OnInit, OnDestroy {
+  constructor(private _headerService: HeaderService, private _router: Router, private _notificationService: NotificationService) { }
   public menus = [{
     name: 'Upload',
     link: '/upload'
@@ -17,29 +17,33 @@ export class AppComponent implements OnInit,OnDestroy {
   {
     name: 'View',
     link: '/view'
+  },
+  {
+    name: 'Add Query',
+    link: '/newQuery'
   }];
-  public active:string
-  public subscription:Subscription[]=[];
-  public spinner:boolean=false;
-  ngOnInit() {    
-    this.subscription.push(this._headerService.getActiveMenu().subscribe((data:string)=>{
-      this.active=data;
+  public active: string;
+  public subscription: Subscription[] = [];
+  public spinner = false;
+  ngOnInit() {
+    this.subscription.push(this._headerService.getActiveMenu().subscribe((data: string) => {
+      this.active = data;
     }));
-    this.subscription.push(this._headerService.getSpinner().subscribe((data:boolean)=>{
-      this.spinner=data;
+    this.subscription.push(this._headerService.getSpinner().subscribe((data: boolean) => {
+      this.spinner = data;
     }));
-    this._router.events.subscribe((event)=>{
-      if(event instanceof NavigationEnd){
-        this._notificationService.setNotification({show:false});
+    this._router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this._notificationService.setNotification({show: false});
       }
     });
   }
-  public ngOnDestroy(){
-    this.subscription.forEach(item=>{
+  public ngOnDestroy() {
+    this.subscription.forEach(item => {
       item.unsubscribe();
     });
   }
-  public navigateTo(path:string){    
+  public navigateTo(path: string) {
     this._router.navigate([path]);
   }
 }
