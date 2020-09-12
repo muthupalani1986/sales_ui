@@ -14,6 +14,10 @@ export class AppComponent implements OnInit, OnDestroy {
   public menus = [{
     name: 'Upload Settlement',
     link: '/upload-settlement'
+  },
+  {
+    name: 'view',
+    link: '/view'
   }];
   public active: string;
   public subscription: Subscription[] = [];

@@ -1,10 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary" *ngIf="showHeader">  
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" *ngFor="let menu of menus" [ngClass]="{'active':menu.name===active}">
-        <a class="nav-link" href="javascript:void(0)" (click)="navigateTo(menu.link)">{{menu.name}}</a>
+      <li class="nav-item" *ngFor="let menu of menus">
+        <a class="nav-link" [routerLink]="menu.link" routerLinkActive="active">{{menu.name}}</a>
       </li>
     </ul>    
+  </div>
+  <div>
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link" routerLink="/logout">Logout</a>
+          </li>
+    </ul>
   </div>
 </nav>
 <app-notification></app-notification>

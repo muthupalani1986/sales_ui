@@ -1,3 +1,16 @@
 .margin-top-10{
     margin-top:10px;
 }
+.navbar{
+    padding:0;
+}
+.navbar a{
+    color:#ffffff;
+    border-top:solid 4px #007bff;
+    padding:15px;
+}
+.navbar a.active{
+    color: #333333;
+    background-color: #c9ced4;
+    border-top: solid 4px #de0c0c;
+}
