@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { SettlementService } from '../settlement.service';
+import { SettlementService } from './../shared/services/settlement.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HeaderService } from '../header.service';
 import { NotificationService, Alert } from '../notification.service';
@@ -79,12 +79,9 @@ export class UploadComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       this.uploadForm.patchValue({ settlement: '' });
       const requestPayload = {
-        payload: {
-          settlements: settlements
-        }
+          payments: settlements
       };
       this.uploadSubs = this._settlementService.saveSettlement(requestPayload).subscribe((data: any) => {
-
         this._headerService.setSpinner(false);
         const nofity: Alert = {
           show: true,

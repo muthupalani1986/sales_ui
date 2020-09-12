@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { HeaderService } from '../header.service';
 import { NotificationService, Alert } from '../notification.service';
-import { SettlementService } from '../settlement.service';
+import { SettlementService } from './../shared/services/settlement.service';
 import { Subscription } from 'rxjs';
 import { QueryService } from '../query.service';
 

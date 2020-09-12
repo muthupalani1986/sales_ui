@@ -9,6 +9,7 @@ import { NotificationService } from './notification.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
+  private showHeader: boolean = true;
   constructor(private _headerService: HeaderService, private _router: Router, private _notificationService: NotificationService) { }
   public menus = [{
     name: 'Upload',
@@ -34,7 +35,12 @@ export class AppComponent implements OnInit, OnDestroy {
     }));
     this._router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this._notificationService.setNotification({show: false});
+        if(event.urlAfterRedirects ==='/login'){
+          this.showHeader=false;
+        }else{
+          this.showHeader=true;
+        }
+        this._notificationService.setNotification({ show: false });
       }
     });
   }

@@ -9,13 +9,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { NotificationComponent } from './notification/notification.component';
 import { NewQueryComponent } from './new-query/new-query.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
   { path: 'upload', component: UploadComponent },
   { path: 'view',      component: ListComponent },
   { path: 'newQuery',      component: NewQueryComponent },
+  { path: 'login',      component: LoginComponent },
   { path: '',
-    redirectTo: '/upload',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
 ];
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
     ListComponent,
     SpinnerComponent,
     NotificationComponent,
-    NewQueryComponent
+    NewQueryComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
