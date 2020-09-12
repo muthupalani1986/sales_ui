@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UploadComponent } from './upload/upload.component';
 import { ListComponent } from './list/list.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthenticateGuard } from './shared/guards/authenticate.guard';
+import { HttpCallsInterceptor } from './shared/interceptors/http-calls.interceptors';
 
 const appRoutes: Routes = [
   {
@@ -55,7 +56,11 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpCallsInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
