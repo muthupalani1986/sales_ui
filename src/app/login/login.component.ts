@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             last_name,
             role_name,
             role_id
-          }
+          };
           this._sessionStorageService.setItem(SESSION_STORAGE.currentUser, userDetails);
           this._router.navigate(['/upload-settlement']);
         } else {
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginForm = this._fb.group({
       email_id: ['', Validators.required],
       password: ['', Validators.required]
-    })
+    });
   }
   get email_id() {
     return this.loginForm.get('email_id');

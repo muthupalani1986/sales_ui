@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private _sessionStorageService:SessionStorageService,
-  private _router:Router) { }
+  constructor(private _sessionStorageService: SessionStorageService,
+  private _router: Router) { }
 
   ngOnInit(): void {
     this._sessionStorageService.removeItem(SESSION_STORAGE.currentUser);

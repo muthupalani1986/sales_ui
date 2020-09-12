@@ -10,12 +10,12 @@ import { UserDetails } from '../interfaces/user-details.interface';
 })
 export class AuthenticateGuard implements CanActivate {
   constructor(private _sessionStorageService: SessionStorageService,
-  private _router:Router){}
+  private _router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const userDetails=<UserDetails>this._sessionStorageService.getItem(SESSION_STORAGE.currentUser);
-    if(!userDetails){
+    const userDetails = <UserDetails>this._sessionStorageService.getItem(SESSION_STORAGE.currentUser);
+    if (!userDetails) {
       this._router.navigate(['/login']);
       return false;
     }

@@ -22,7 +22,7 @@ export class HttpCallsInterceptor implements HttpInterceptor {
 
                 this.count--;
 
-                if (this.count == 0) { this._headerService.setSpinner(false); }
+                if (this.count === 0) { this._headerService.setSpinner(false); }
             })
             );
     }
