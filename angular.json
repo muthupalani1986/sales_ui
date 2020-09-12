@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "sales-ui"
+  "defaultProject": "sales-ui",
+  "cli": {
+    "analytics": false
+  }
 }
