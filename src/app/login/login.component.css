@@ -1,0 +1,26 @@
+.login-form{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+.login-form-card{
+    width: 100%;
+}
+.login-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.full-width{
+    width: 100%;
+}
+.logn-form-action{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (min-width:768px){
+    .login-form-card{
+        width:400px;
+    }
+}

@@ -29,7 +29,7 @@ export class UploadComponent implements OnInit, AfterViewInit, OnDestroy {
     this.file = e.target.files[0];
   }
   uploadDocument() {
-    const fileReader = new FileReader();
+    const fileReader:any = new FileReader();
     this._headerService.setSpinner(true);
     fileReader.onload = (e) => {
       const lines = fileReader.result.split('\n');
@@ -79,7 +79,7 @@ export class UploadComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       this.uploadForm.patchValue({ settlement: '' });
       const requestPayload = {
-          payments: settlements
+        amz_payments: settlements
       };
       this.uploadSubs = this._settlementService.saveSettlement(requestPayload).subscribe((data: any) => {
         this._headerService.setSpinner(false);

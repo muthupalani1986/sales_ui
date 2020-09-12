@@ -1,3 +1,29 @@
-<p>
-  login works!
-</p>
+<div class="login-form">
+  <form [formGroup]="loginForm">
+  <mat-card class="login-form-card">
+    <mat-card-header class="login-header">
+      <mat-card-title class="login-title">Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <mat-form-field appearance="standard" class="full-width">
+          <mat-label>Email address</mat-label>
+          <input matInput placeholder="Email address" formControlName="email_id" required>
+          <mat-error *ngIf="email_id.invalid && (email_id.dirty || email_id.touched)">This is required</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="standard" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Password" formControlName="password" required>
+          <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">This is required</mat-error>
+        </mat-form-field>
+      </p>
+      
+    </mat-card-content>
+    <mat-card-actions class="logn-form-action">
+      <button mat-raised-button color="primary" (click)="onLogin()">Sign in</button>
+    </mat-card-actions>
+  </mat-card>
+  </form>
+</div>

@@ -9,19 +9,11 @@ import { NotificationService } from './notification.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  private showHeader: boolean = true;
+  public showHeader: boolean = true;
   constructor(private _headerService: HeaderService, private _router: Router, private _notificationService: NotificationService) { }
   public menus = [{
-    name: 'Upload',
-    link: '/upload'
-  },
-  {
-    name: 'View',
-    link: '/view'
-  },
-  {
-    name: 'Add Query',
-    link: '/newQuery'
+    name: 'Upload Settlement',
+    link: '/upload-settlement'
   }];
   public active: string;
   public subscription: Subscription[] = [];

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UploadComponent } from './upload/upload.component';
 import { ListComponent } from './list/list.component';
@@ -10,13 +10,23 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { NotificationComponent } from './notification/notification.component';
 import { NewQueryComponent } from './new-query/new-query.component';
 import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthenticateGuard } from './shared/guards/authenticate.guard';
 
 const appRoutes: Routes = [
-  { path: 'upload', component: UploadComponent },
-  { path: 'view',      component: ListComponent },
-  { path: 'newQuery',      component: NewQueryComponent },
-  { path: 'login',      component: LoginComponent },
-  { path: '',
+  {
+    path: 'upload-settlement', component: UploadComponent, canActivate: [AuthenticateGuard]
+  },
+  { path: 'view', component: ListComponent },
+  { path: 'newQuery', component: NewQueryComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   }
@@ -36,7 +46,14 @@ const appRoutes: Routes = [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, {useHash: true})
+    RouterModule.forRoot(appRoutes, { useHash: true }),
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
