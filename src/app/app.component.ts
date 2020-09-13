@@ -16,8 +16,8 @@ export class AppComponent implements OnInit, OnDestroy {
     link: '/upload-settlement'
   },
   {
-    name: 'view',
-    link: '/view'
+    name: 'Upload Pickups',
+    link: '/upload-pickups'
   }];
   public active: string;
   public subscription: Subscription[] = [];

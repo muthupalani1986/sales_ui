@@ -4,9 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HeaderService } from '../header.service';
 import { NotificationService, Alert } from '../notification.service';
 import { Subscription } from 'rxjs';
-
 declare var require: any;
 const moment = require('moment');
+import * as _ from 'lodash';
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
@@ -38,6 +38,9 @@ export class UploadComponent implements OnInit, AfterViewInit, OnDestroy {
         const tabs = lines[line].split('\t');
         const settlement = {};
         for (let tab = 0; tab < tabs.length; tab++) {
+          if (tabs.length === 1) {
+            continue;
+          }
           settlement['settlement-id'] = tabs[0];
           settlement['settlement-start-date'] = !tabs[1] ? '' : moment(tabs[1]).format('YYYY-MM-DD HH:MM:SS');
           settlement['settlement-end-date'] = !tabs[2] ? '' : moment(tabs[2]).format('YYYY-MM-DD HH:MM:SS');
@@ -75,7 +78,10 @@ export class UploadComponent implements OnInit, AfterViewInit, OnDestroy {
           settlement['direct-payment-amount'] = tabs[34];
           settlement['other-amount'] = tabs[35];
         }
-        settlements.push(settlement);
+        const columnCount = _.keys(settlement);
+        if (columnCount.length !== 0) {
+          settlements.push(settlement);
+        }
       }
       this.uploadForm.patchValue({ settlement: '' });
       const requestPayload = {
@@ -83,14 +89,15 @@ export class UploadComponent implements OnInit, AfterViewInit, OnDestroy {
       };
       this.uploadSubs = this._settlementService.saveSettlement(requestPayload).subscribe((data: any) => {
         this._headerService.setSpinner(false);
+        const msg=_.get(data,'msg');
         const nofity: Alert = {
           show: true,
           type: 'success',
-          message: 'File uploaded scuessfully'
+          message: msg
         };
         if (data.status === 404) {
           nofity.type = 'error',
-          nofity.message = 'Error while uploading the file';
+            nofity.message = 'Error while uploading the file';
         }
         this._notificationService.setNotification(nofity);
       }, (error) => {

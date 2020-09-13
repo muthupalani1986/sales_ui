@@ -19,10 +19,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthenticateGuard } from './shared/guards/authenticate.guard';
 import { HttpCallsInterceptor } from './shared/interceptors/http-calls.interceptors';
 import { LogoutComponent } from './logout/logout.component';
+import { UploadPickupComponent } from './upload-pickup/upload-pickup.component';
 
 const appRoutes: Routes = [
   {
     path: 'upload-settlement', component: UploadComponent, canActivate: [AuthenticateGuard]
+  },
+  {
+    path: 'upload-pickups', component: UploadPickupComponent, canActivate: [AuthenticateGuard]
   },
   {
     path: 'logout', component: LogoutComponent, canActivate: [AuthenticateGuard]
@@ -46,7 +50,8 @@ const appRoutes: Routes = [
     NotificationComponent,
     NewQueryComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    UploadPickupComponent
   ],
   imports: [
     BrowserModule,
