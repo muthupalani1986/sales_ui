@@ -4,7 +4,7 @@
 .navbar{
     padding:0;
 }
-.navbar a{
+.navbar a,.navbar .welcome-text{
     color:#ffffff;
     border-top:solid 4px #007bff;
     padding:15px;

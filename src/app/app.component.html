@@ -8,6 +8,9 @@
   </div>
   <div>
       <ul class="navbar-nav mr-auto">
+        <li>
+          <div class="nav-link welcome-text">Welcome, {{userDetails?.first_name}} {{userDetails?.last_name}}</div>
+        </li>
           <li class="nav-item">
               <a class="nav-link" routerLink="/logout">Logout</a>
           </li>

@@ -20,6 +20,7 @@ import { AuthenticateGuard } from './shared/guards/authenticate.guard';
 import { HttpCallsInterceptor } from './shared/interceptors/http-calls.interceptors';
 import { LogoutComponent } from './logout/logout.component';
 import { UploadPickupComponent } from './upload-pickup/upload-pickup.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 const appRoutes: Routes = [
   {
@@ -63,6 +64,7 @@ const appRoutes: Routes = [
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatRadioModule,
     BrowserAnimationsModule,
     FormsModule
   ],

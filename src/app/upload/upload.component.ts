@@ -41,42 +41,43 @@ export class UploadComponent implements OnInit, AfterViewInit, OnDestroy {
           if (tabs.length === 1) {
             continue;
           }
-          settlement['settlement-id'] = tabs[0];
-          settlement['settlement-start-date'] = !tabs[1] ? '' : moment(tabs[1]).format('YYYY-MM-DD HH:MM:SS');
-          settlement['settlement-end-date'] = !tabs[2] ? '' : moment(tabs[2]).format('YYYY-MM-DD HH:MM:SS');
-          settlement['deposit-date'] = !tabs[3] ? '' : moment(tabs[3]).format('YYYY-MM-DD HH:MM:SS');
-          settlement['total-amount'] = tabs[4];
+          settlement['settlement_id'] = tabs[0];
+          settlement['settlement_start_date'] = !tabs[1] ? '' : moment(tabs[1]).format('YYYY-MM-DD HH:MM:SS');
+          settlement['settlement_end_date'] = !tabs[2] ? '' : moment(tabs[2]).format('YYYY-MM-DD HH:MM:SS');
+          settlement['deposit_date'] = !tabs[3] ? '' : moment(tabs[3]).format('YYYY-MM-DD HH:MM:SS');
+          settlement['total_amount'] = tabs[4];
           settlement['currency'] = tabs[5];
-          settlement['transaction-type'] = tabs[6];
-          settlement['order-id'] = tabs[7];
-          settlement['merchant-order-id'] = tabs[8];
-          settlement['adjustment-id'] = tabs[9];
-          settlement['shipment-id'] = tabs[10];
-          settlement['marketplace-name'] = tabs[11];
-          settlement['shipment-fee-type'] = tabs[12];
-          settlement['shipment-fee-amount'] = tabs[13];
-          settlement['order-fee-type'] = tabs[14];
-          settlement['order-fee-amount'] = tabs[15];
-          settlement['fulfillment-id'] = tabs[16];
-          settlement['posted-date'] = !tabs[17] ? '' : moment(tabs[17]).format('YYYY-MM-DD HH:MM:SS');
-          settlement['order-item-code'] = tabs[18];
-          settlement['merchant-order-item-id'] = tabs[19];
-          settlement['merchant-adjustment-item-id'] = tabs[20];
+          settlement['transaction_type'] = tabs[6];
+          settlement['order_id'] = tabs[7];
+          settlement['merchant_order_id'] = tabs[8];
+          settlement['adjustment_id'] = tabs[9];
+          settlement['shipment_id'] = tabs[10];
+          settlement['marketplace_name'] = tabs[11];
+          settlement['shipment_fee_type'] = tabs[12];
+          settlement['shipment_fee_amount'] = tabs[13];
+          settlement['order_fee_type'] = tabs[14];
+          settlement['order_fee_amount'] = tabs[15];
+          settlement['fulfillment_id'] = tabs[16];
+          settlement['posted_date'] = !tabs[17] ? '' : moment(tabs[17]).format('YYYY-MM-DD HH:MM:SS');
+          settlement['order_item_code'] = tabs[18];
+          settlement['merchant_order_item_id'] = tabs[19];
+          settlement['merchant_adjustment_item_id'] = tabs[20];
           settlement['sku'] = tabs[21];
-          settlement['quantity-purchased'] = tabs[22];
-          settlement['price-type'] = tabs[23];
-          settlement['price-amount'] = tabs[24];
-          settlement['item-related-fee-type'] = tabs[25];
-          settlement['item-related-fee-amount'] = tabs[26];
-          settlement['misc-fee-amount'] = tabs[27];
-          settlement['other-fee-amount'] = tabs[28];
-          settlement['other-fee-reason-description'] = tabs[29];
-          settlement['promotion-id'] = tabs[30];
-          settlement['promotion-type'] = tabs[31];
-          settlement['promotion-amount'] = tabs[32];
-          settlement['direct-payment-type'] = tabs[33];
-          settlement['direct-payment-amount'] = tabs[34];
-          settlement['other-amount'] = tabs[35];
+          settlement['quantity_purchased'] = tabs[22];
+          settlement['price_type'] = tabs[23];
+          settlement['price_amount'] = tabs[24];
+          settlement['item_related_fee_type'] = tabs[25];
+          settlement['item_related_fee_amount'] = tabs[26];
+          settlement['misc_fee_amount'] = tabs[27];
+          settlement['other_fee_amount'] = tabs[28];
+          settlement['other_fee_reason_description'] = tabs[29];
+          settlement['promotion_id'] = tabs[30];
+          settlement['promotion_type'] = tabs[31];
+          settlement['promotion_amount'] = tabs[32];
+          settlement['direct_payment_type'] = tabs[33];
+          settlement['direct_payment_amount'] = tabs[34];
+          settlement['other_amount'] = tabs[35];
+          settlement['transfer_type'] = this.transactionType.value;
         }
         const columnCount = _.keys(settlement);
         if (columnCount.length !== 0) {
@@ -89,7 +90,7 @@ export class UploadComponent implements OnInit, AfterViewInit, OnDestroy {
       };
       this.uploadSubs = this._settlementService.saveSettlement(requestPayload).subscribe((data: any) => {
         this._headerService.setSpinner(false);
-        const msg=_.get(data,'msg');
+        const msg = _.get(data, 'msg');
         const nofity: Alert = {
           show: true,
           type: 'success',
@@ -108,11 +109,15 @@ export class UploadComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   private initUploadForm() {
     this.uploadForm = this.fb.group({
-      settlement: ['', [Validators.required]]
+      settlement: ['', [Validators.required]],
+      transactionType: ['', Validators.required]
     });
   }
   public get settlement() {
     return this.uploadForm.get('settlement');
+  }
+  public get transactionType() {
+    return this.uploadForm.get('transactionType');
   }
   public ngAfterViewInit() {
     setTimeout(() => {
